@@ -1,0 +1,229 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Apropiacion**\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "okTpf3a_rgJ_"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Realice un programa que calcule el índice de cosecha de un cultivo en función de la cantidad de frutos recolectados y la cantidad de frutos producidos en total."
+      ],
+      "metadata": {
+        "id": "P9YQNARgrd92"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "FrutosRecolectados = int(input(\"Digite los frutos recolectados \"))\n",
+        "CantidadProducida = int(input(\"Digite la cantidad de frutos que fueron producidos \"))\n",
+        "\n",
+        "\n",
+        "\n",
+        "IndiceCosecha = (CantidadProducida / FrutosRecolectados) * 100\n",
+        "\n",
+        "print(\"El indice de cosecha fue:\", IndiceCosecha , \"%\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LK0Bsehfry01",
+        "outputId": "549038f3-0cb9-451a-d8bd-67cb668c7b87"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Digite los frutos recolectados 50\n",
+            "Digite la cantidad de frutos que fueron producidos 25\n",
+            "El indice de cosecha fue: 50.0 %\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Dibujar la P de Python que abarque 7 filas y 5 columnas. Use solo una línea de código"
+      ],
+      "metadata": {
+        "id": "y9tke2nE1f41"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "print( \"+\" + 5 * \"-\" + \"+\\n\" \"|\" + \" \" * 5 + \"|\\n\" \"+\" + 5 * \"-\" + \"+\" \"\\n\" \"|\\n|\" )\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XqbA2TQV10sP",
+        "outputId": "9b4c7c6f-8526-48c2-e520-123f01b2d5de"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "+-----+\n",
+            "|     |\n",
+            "+-----+\n",
+            "|\n",
+            "|\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Un alumno desea saber cuál será su calificación final en la materia de Matemáticas. Dicha calificación se compone de los siguientes porcentajes: 55% del promedio de sus tres calificaciones parciales (se debe leer cada calificación parcial). 30% de la calificación del examen final. 15% de la calificación de un trabajo final."
+      ],
+      "metadata": {
+        "id": "lEitTl88B0FT"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "PrimeraNota = int(input(\"Cual fue la primera nota? \"))\n",
+        "SegundaNota = int(input(\"Cual fue la Segunda nota? \"))\n",
+        "TerceraNota = int(input(\"Cual fue la Tercera nota? \"))\n",
+        "\n",
+        "\n",
+        "\n",
+        "CalificacionExamen = int(input(\"Que nota del examen tuvo? \"))\n",
+        "CalificacionTrabajoFinal = int(input(\"Escriba que calificacion tuvo del trabajo final: \"))\n",
+        "\n",
+        "PromedioNota = (PrimeraNota + SegundaNota + TerceraNota) / 3\n",
+        "CalificacionFinal = (PromedioNota * 0.55) + (CalificacionExamen * 0.30)+(CalificacionTrabajoFinal * 0.15)\n",
+        "\n",
+        "\n",
+        "print(\"Su calificacion final en la maeteria de matematicas es: \", CalificacionFinal)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Z4rQmC12B-Gf",
+        "outputId": "f9ae06fe-6811-4ed5-a416-a46c2828f6a5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cual fue la primera nota? 80\n",
+            "Cual fue la Segunda nota? 60\n",
+            "Cual fue la Tercera nota? 85\n",
+            "Que nota del examen tuvo? 70\n",
+            "Escriba que calificacion tuvo del trabajo final: 90\n",
+            "Su calificacion final en la maeteria de matematicas es:  75.75\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Recibir una frase por parte del usuario y devolver el número de palabras que se encuentran en la frase"
+      ],
+      "metadata": {
+        "id": "pHZaAQmhO1-1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "IngresarPalabra =input(\"ingresa una palabra para saber cuantos digitos tiene \" )\n",
+        "\n",
+        "ContadorDeDigitos = len(IngresarPalabra)\n",
+        "print(f\"La palabra {IngresarPalabra} cuenta con un numero de letras de: {ContadorDeDigitos}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7z1mwUJ6OFK3",
+        "outputId": "c84f4c8f-54ec-427a-e5c3-76d7699ab5db"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ingresa una palabra para saber cuantos digitos tiene Everything\n",
+            "La palabra Everything cuenta con un numero de letras de: 10\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Recibir una frase y transformarla a mayúscula sostenida e invirtiendo su contenido"
+      ],
+      "metadata": {
+        "id": "4cFroncedf13"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "PalabraMayus = input(\"Escriba lo que quiera en minusculas y descubra como se ve del reves  \")\n",
+        "LeeDigitos = (PalabraMayus.upper() [::-1])\n",
+        "\n",
+        "\n",
+        "print(LeeDigitos)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_B2VYwL-ddZG",
+        "outputId": "b7986a09-3ee0-4a0a-a1cd-f95862079273"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Escriba lo que quiera en minusculas y descubra como se ve del reves  Business are business\n",
+            "SSENISUB ERA SSENISUB\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
