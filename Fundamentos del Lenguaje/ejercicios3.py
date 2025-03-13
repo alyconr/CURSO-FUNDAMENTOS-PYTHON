@@ -38,4 +38,4 @@ for i in range(l_minima):
     if frase1[i] == frase2[i]:
         l_repetidas.append(frase1[i])
 
-print("Letras repetidas en la misma posición:", l_repetidas)
+print("Letras repetidas en la misma posición:", l_repetidas) 
