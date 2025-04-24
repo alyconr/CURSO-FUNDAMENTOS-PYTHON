@@ -31,7 +31,7 @@ def buscar_archivos(directorio, subcadena):
 
 def solicitar_busqueda():
     directorio = input("Ingrese la ruta del directorio: ")
-    subcadena = input("Ingrese la subcadena a buscar: ")
+    subcadena = input("Ingrese la Subcadena a Buscar: ")
     buscar_archivos(directorio, subcadena)
 
-solicitar_busqueda()
+solicitar_busqueda() 
