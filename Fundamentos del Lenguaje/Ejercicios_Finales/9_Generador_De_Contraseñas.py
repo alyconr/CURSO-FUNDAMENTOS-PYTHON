@@ -10,10 +10,7 @@ import random
 import string
 
 def generarContraseña(longitud):
-    """Genera una contraseña aleatoria de la longitud especificada."""
-    # Definir los caracteres que se utilizarán en la contraseña
     caracteres = string.ascii_letters + string.digits + string.punctuation
-    # Generar la contraseña aleatoria
     contrasena = ''.join(random.choice(caracteres) for _ in range(longitud))
     return contrasena
 
@@ -25,10 +22,8 @@ def solicitarLongitud():
                 print("Error: La longitud debe ser un número entero positivo. Intente de nuevo.")
                 continue
             
-            # Generar y mostrar la contraseña
             contrasena = generarContraseña(longitud)
             print(f"Contraseña generada: {contrasena}")
-            break  # Salir del bucle si se genera correctamente
 
         except ValueError:
             print("Error: Por favor, ingrese un número entero válido.")

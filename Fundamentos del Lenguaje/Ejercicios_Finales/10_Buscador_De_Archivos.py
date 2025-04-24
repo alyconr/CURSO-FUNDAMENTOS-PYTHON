@@ -10,12 +10,9 @@ Implementa manejo de excepciones para controlar errores como directorio no exist
 import os
 
 def buscar_archivos(directorio, subcadena):
-    """Busca archivos en el directorio que contengan la subcadena en su nombre."""
     try:
-        # Listar el contenido del directorio
         archivos = os.listdir(directorio)
         
-        # Filtrar archivos que contengan la subcadena
         archivos_encontrados = [archivo for archivo in archivos if subcadena in archivo]
         
         if archivos_encontrados:
@@ -37,5 +34,4 @@ def solicitar_busqueda():
     subcadena = input("Ingrese la subcadena a buscar: ")
     buscar_archivos(directorio, subcadena)
 
-# Ejemplo de uso
 solicitar_busqueda()
