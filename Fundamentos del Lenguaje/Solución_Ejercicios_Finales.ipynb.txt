@@ -1,0 +1,907 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##EJERCICIOS FINALES"
+      ],
+      "metadata": {
+        "id": "AzmtgIiah-O5"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Ejercicios para aplicar funciones, estructuras de control, colecciones, módulos y manejo de excepciones\n",
+        "\n",
+        "---\n",
+        "\n",
+        "## Ejercicio 1: Calculadora Avanzada\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Crea una función que actúe como calculadora. La función recibirá dos números y un operador (por ejemplo, '+', '-', '*', '/', '**', '//') para realizar la operación correspondiente.  \n",
+        "- Utiliza estructuras de control (if/else) para seleccionar la operación a realizar.  \n",
+        "- Usa manejo de excepciones para controlar errores como la división por cero y entradas no numéricas.  \n",
+        "- Puedes importar el módulo `math` para operaciones adicionales si es necesario.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "\n",
+        "Ingrese el primer número: 10\n",
+        "Ingrese el segundo número: 5\n",
+        "Ingrese el operador (+, -, *, /, **, //): /\n",
+        "Resultado: 10 / 5 = 2.0"
+      ],
+      "metadata": {
+        "id": "C8jqrm5XiET-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def calculadora():\n",
+        "    num1 = input(\"Ingrese el primer número: \")\n",
+        "    num2 = input(\"Ingrese el segundo número: \")\n",
+        "    operador = input(\"Ingrese el operador (+, -, *, /, **, //): \")\n",
+        "\n",
+        "    if operador == '+':\n",
+        "        resultado = float(num1) + float(num2)\n",
+        "        print(f\"Resultado: {num1} + {num2} = {resultado}\")\n",
+        "    elif operador == '-':\n",
+        "        resultado = float(num1) - float(num2)\n",
+        "        print(f\"Resultado: {num1} - {num2} = {resultado}\")\n",
+        "    elif operador == '*':\n",
+        "        resultado = float(num1) * float(num2)\n",
+        "        print(f\"Resultado: {num1} * {num2} = {resultado}\")\n",
+        "    elif operador == '/':\n",
+        "        if float(num2) != 0:\n",
+        "            resultado = float(num1) / float(num2)\n",
+        "            print(f\"Resultado: {num1} / {num2} = {resultado}\")\n",
+        "        else:\n",
+        "            print(\"Error: División por cero.\")\n",
+        "    elif operador == '**':\n",
+        "        resultado = float(num1) ** float(num2)\n",
+        "        print(f\"Resultado: {num1} ** {num2} = {resultado}\")\n",
+        "    elif operador == '//':\n",
+        "        if float(num2) != 0:\n",
+        "            resultado = float(num1) // float(num2)\n",
+        "            print(f\"Resultado: {num1} // {num2} = {resultado}\")\n",
+        "        else:\n",
+        "            print(\"Error: División entera por cero.\")\n",
+        "    else:\n",
+        "        print(\"Operador no válido.\")\n",
+        "\n",
+        "calculadora()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "w0pKMezFiHn_",
+        "outputId": "c7d2a84a-9df0-41be-910f-81b2800e70fd"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese el primer número: 3\n",
+            "Ingrese el segundo número: 5\n",
+            "Ingrese el operador (+, -, *, /, **, //): *\n",
+            "Resultado: 3 * 5 = 15.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 2: Administrador de Inventarios\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Desarrolla un sistema para gestionar el inventario de productos usando un diccionario donde cada clave es el nombre del producto y su valor la cantidad en stock.  \n",
+        "- Implementa funciones para agregar, actualizar y eliminar productos.  \n",
+        "- Utiliza estructuras de control para recorrer y mostrar el inventario.  \n",
+        "- Incluye manejo de excepciones para capturar intentos de actualizar o eliminar un producto inexistente.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Inventario inicial: {'manzanas': 50, 'naranjas': 30, 'peras': 20}\n",
+        "Actualizando stock de 'peras' a 25...\n",
+        "Producto 'bananas' agregado con 40 unidades.\n",
+        "Eliminando 'naranjas'...\n",
+        "Inventario final: {'manzanas': 50, 'peras': 25, 'bananas': 40}"
+      ],
+      "metadata": {
+        "id": "s7sg3sw6ifqC"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def agregar_producto(inventario):\n",
+        "    producto = input(\"Ingrese el nombre del producto a agregar: \")\n",
+        "    cantidad = int(input(f\"Ingrese la cantidad de {producto} a agregar: \"))\n",
+        "    inventario[producto] = cantidad\n",
+        "    print(f\"Producto '{producto}' agregado con {cantidad} unidades.\")\n",
+        "\n",
+        "def actualizar_producto(inventario):\n",
+        "    producto = input(\"Ingrese el nombre del producto a actualizar: \")\n",
+        "    try:\n",
+        "        inventario[producto]\n",
+        "        cantidad = int(input(f\"Ingrese la nueva cantidad de {producto}: \"))\n",
+        "        inventario[producto] = cantidad\n",
+        "        print(f\"Stock de '{producto}' actualizado a {cantidad}.\")\n",
+        "    except KeyError:\n",
+        "        print(f\"Error: El producto '{producto}' no existe en el inventario.\")\n",
+        "\n",
+        "def eliminar_producto(inventario):\n",
+        "    producto = input(\"Ingrese el nombre del producto a eliminar: \")\n",
+        "    try:\n",
+        "        del inventario[producto]\n",
+        "        print(f\"Producto '{producto}' eliminado.\")\n",
+        "    except KeyError:\n",
+        "        print(f\"Error: El producto '{producto}' no existe en el inventario.\")\n",
+        "\n",
+        "def mostrar_inventario(inventario):\n",
+        "    print(\"Inventario actual:\")\n",
+        "    if inventario:\n",
+        "        for producto, cantidad in inventario.items():\n",
+        "            print(f\"{producto}: {cantidad}\")\n",
+        "    else:\n",
+        "        print(\"El inventario está vacío.\")\n",
+        "\n",
+        "inventario = {\n",
+        "    'manzanas': 50,\n",
+        "    'naranjas': 30,\n",
+        "    'peras': 20,\n",
+        "    'platanos': 15,\n",
+        "    'fresas': 25\n",
+        "}\n",
+        "\n",
+        "while True:\n",
+        "    print(\"Opciones:\")\n",
+        "    print(\"1. Ver inventario\")\n",
+        "    print(\"2. Agregar producto\")\n",
+        "    print(\"3. Actualizar producto\")\n",
+        "    print(\"4. Eliminar producto\")\n",
+        "    print(\"5. Salir\")\n",
+        "\n",
+        "    opcion = input(\"Seleccione una opción (1-5): \")\n",
+        "\n",
+        "    if opcion == '1':\n",
+        "        mostrar_inventario(inventario)\n",
+        "    elif opcion == '2':\n",
+        "        agregar_producto(inventario)\n",
+        "    elif opcion == '3':\n",
+        "        actualizar_producto(inventario)\n",
+        "    elif opcion == '4':\n",
+        "        eliminar_producto(inventario)\n",
+        "    elif opcion == '5':\n",
+        "        print(\"Saliendo del programa...\")\n",
+        "        break\n",
+        "    else:\n",
+        "        print(\"Opción no válida. Intente nuevamente.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "s5rve5omikW5",
+        "outputId": "633170d8-9207-4bd2-9fd1-7346f8a55795"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Opciones:\n",
+            "1. Ver inventario\n",
+            "2. Agregar producto\n",
+            "3. Actualizar producto\n",
+            "4. Eliminar producto\n",
+            "5. Salir\n",
+            "Seleccione una opción (1-5): 2\n",
+            "Ingrese el nombre del producto a agregar: huevo\n",
+            "Ingrese la cantidad de huevo a agregar: 999\n",
+            "Producto 'huevo' agregado con 999 unidades.\n",
+            "Opciones:\n",
+            "1. Ver inventario\n",
+            "2. Agregar producto\n",
+            "3. Actualizar producto\n",
+            "4. Eliminar producto\n",
+            "5. Salir\n",
+            "Seleccione una opción (1-5): 4\n",
+            "Ingrese el nombre del producto a eliminar: manzanas\n",
+            "Producto 'manzanas' eliminado.\n",
+            "Opciones:\n",
+            "1. Ver inventario\n",
+            "2. Agregar producto\n",
+            "3. Actualizar producto\n",
+            "4. Eliminar producto\n",
+            "5. Salir\n",
+            "Seleccione una opción (1-5): 1\n",
+            "Inventario actual:\n",
+            "naranjas: 30\n",
+            "peras: 20\n",
+            "platanos: 15\n",
+            "fresas: 25\n",
+            "huevo: 999\n",
+            "Opciones:\n",
+            "1. Ver inventario\n",
+            "2. Agregar producto\n",
+            "3. Actualizar producto\n",
+            "4. Eliminar producto\n",
+            "5. Salir\n",
+            "Seleccione una opción (1-5): 5\n",
+            "Saliendo del programa...\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 3: Análisis de Texto\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Crea una función que reciba una cadena de texto y calcule la frecuencia de cada palabra en el mismo.  \n",
+        "- Convierte el texto a minúsculas y separa las palabras usando algún método (puedes utilizar expresiones regulares con el módulo `re`).  \n",
+        "- Emplea un diccionario para almacenar la palabra (clave) y su frecuencia (valor).  \n",
+        "- Controla excepciones en caso de que el usuario no ingrese ningún texto o ingrese caracteres inesperados.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Ingrese un texto: \"Hola mundo, hola a todos en el mundo\"\n",
+        "Frecuencia de palabras: hola: 2\n",
+        "mundo: 2\n",
+        "a: 1\n",
+        "todos: 1\n",
+        "en: 1\n",
+        "el: 1"
+      ],
+      "metadata": {
+        "id": "S67Y5y3om7gW"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import re\n",
+        "\n",
+        "def analizar_texto():\n",
+        "    texto = input(\"Ingrese un texto: \")\n",
+        "    if not texto.strip():\n",
+        "        print(\"El texto no puede estar vacío.\")\n",
+        "        return\n",
+        "\n",
+        "    texto = texto.lower()\n",
+        "    palabras = re.findall(r'\\b\\w+\\b', texto)\n",
+        "\n",
+        "    frecuencia = {}\n",
+        "    for palabra in palabras:\n",
+        "        if palabra in frecuencia:\n",
+        "            frecuencia[palabra] += 1\n",
+        "        else:\n",
+        "            frecuencia[palabra] = 1\n",
+        "\n",
+        "    print(\"Frecuencia de palabras:\")\n",
+        "    for palabra, count in frecuencia.items():\n",
+        "        print(f\"{palabra}: {count}\")\n",
+        "\n",
+        "\n",
+        "analizar_texto()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5Xsu0tPHnAZG",
+        "outputId": "9b6770c2-bb72-4c55-b96d-3087b452f2d2"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese un texto: hola, me gusta demasiado saludar asi que me digo hola\n",
+            "Frecuencia de palabras:\n",
+            "hola: 2\n",
+            "me: 2\n",
+            "gusta: 1\n",
+            "demasiado: 1\n",
+            "saludar: 1\n",
+            "asi: 1\n",
+            "que: 1\n",
+            "digo: 1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 4: Conversor de Unidades\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Desarrolla un conjunto de funciones para convertir unidades métricas. Por ejemplo:  \n",
+        "- De centímetros a pulgadas.  \n",
+        "- De kilómetros a millas.  \n",
+        "Utiliza estructuras de control para verificar que la entrada sea numérica, y maneja excepciones cuando el usuario ingrese datos inválidos.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Seleccione la conversión:\n",
+        "\n",
+        "Centímetros a pulgadas\n",
+        "\n",
+        "Kilómetros a millas\n",
+        "Opción: 1\n",
+        "Ingrese la cantidad en centímetros: 100\n",
+        "Resultado: 100 cm = 39.37 pulgadas"
+      ],
+      "metadata": {
+        "id": "MQtR2ByPo9Qe"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def convertir_unidad(valor, opcion):\n",
+        "    if opcion == 1:\n",
+        "        return valor / 2.54, \"centímetros\", \"pulgadas\"\n",
+        "    elif opcion == 2:\n",
+        "        return valor / 1.609, \"kilómetros\", \"millas\"\n",
+        "    elif opcion == 3:\n",
+        "        return valor * 2.54, \"pulgadas\", \"centímetros\"\n",
+        "    elif opcion == 4:\n",
+        "        return valor * 1.609, \"millas\", \"kilómetros\"\n",
+        "    elif opcion == 5:\n",
+        "        return valor / 100000, \"centímetros\", \"kilómetros\"\n",
+        "    elif opcion == 6:\n",
+        "        return valor * 39370.1, \"kilómetros\", \"pulgadas\"\n",
+        "    else:\n",
+        "        return None, None, None\n",
+        "\n",
+        "def mostrar_opciones():\n",
+        "    print(\"Seleccione la conversión:\")\n",
+        "    print(\"1. Centímetros a pulgadas\")\n",
+        "    print(\"2. Kilómetros a millas\")\n",
+        "    print(\"3. Pulgadas a centímetros\")\n",
+        "    print(\"4. Millas a kilómetros\")\n",
+        "    print(\"5. Centímetros a kilómetros\")\n",
+        "    print(\"6. Kilómetros a pulgadas\")\n",
+        "\n",
+        "mostrar_opciones()\n",
+        "\n",
+        "try:\n",
+        "    opcion = int(input(\"Opción de conversión: \"))\n",
+        "    if opcion not in [1, 2, 3, 4, 5, 6]:\n",
+        "        print(\"Opción no válida.\")\n",
+        "except ValueError:\n",
+        "    print(\"Error: ingrese un número válido.\")\n",
+        "\n",
+        "try:\n",
+        "    valor = float(input(\"Ingrese el valor a convertir: \"))\n",
+        "    if valor < 0:\n",
+        "        print(\"Por favor ingrese un valor positivo.\")\n",
+        "except ValueError:\n",
+        "    print(\"Error: ingrese un número válido.\")\n",
+        "\n",
+        "resultado, unidad_entrada, unidad_salida = convertir_unidad(valor, opcion)\n",
+        "if resultado is not None:\n",
+        "    print(f\"{valor} {unidad_entrada} = {resultado:.2f} {unidad_salida}\")\n",
+        "else:\n",
+        "    print(\"Error en la conversión.\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5F69C6QwtCKP",
+        "outputId": "84f067a8-c9bf-43b6-db2b-2cd03c9974d6"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Seleccione la conversión:\n",
+            "1. Centímetros a pulgadas\n",
+            "2. Kilómetros a millas\n",
+            "3. Pulgadas a centímetros\n",
+            "4. Millas a kilómetros\n",
+            "5. Centímetros a kilómetros\n",
+            "6. Kilómetros a pulgadas\n",
+            "Opción de conversión: 1\n",
+            "Ingrese el valor a convertir: 100\n",
+            "100.0 centímetros = 39.37 pulgadas\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 5: Juego \"Adivina el Número\"\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Implementa un juego en el que la computadora selecciona aleatoriamente un número en un rango (por ejemplo, 1 a 50) y el usuario debe adivinarlo.  \n",
+        "- Emplea el módulo `random` para generar el número secreto.  \n",
+        "- Utiliza un bucle que permita múltiples intentos, con retroalimentación indicando si el número ingresado es mayor o menor que el secreto.  \n",
+        "- Gestiona excepciones para capturar entradas no numéricas.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "¡Bienvenido al juego \"Adivina el Número\"!\n",
+        "Estoy pensando en un número entre 1 y 50.\n",
+        "Intento 1 - Ingresa tu número: 25\n",
+        "El número secreto es mayor.\n",
+        "Intento 2 - Ingresa tu número: 35\n",
+        "El número secreto es menor.\n",
+        "Intento 3 - Ingresa tu número: 30\n",
+        "¡Felicidades! Has adivinado el número secreto: 30"
+      ],
+      "metadata": {
+        "id": "RUZFLugauXpX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Bienvenido al juego: Adivina el Número\")\n",
+        "print(\"El numero esta entre 1 y 20.\")\n",
+        "\n",
+        "secreto = 17\n",
+        "intento = 1\n",
+        "\n",
+        "while True:\n",
+        "    try:\n",
+        "        numero = int(input(f\"Intento {intento} - Ingresa tu número: \"))\n",
+        "        if numero < secreto:\n",
+        "            print(\"El número secreto es mayor.\")\n",
+        "        elif numero > secreto:\n",
+        "            print(\"El número secreto es menor.\")\n",
+        "        else:\n",
+        "            print(f\"¡Felicidades! adivinaste el número secreto: {secreto}\")\n",
+        "            break\n",
+        "        intento += 1\n",
+        "    except ValueError:\n",
+        "        print(\"Por favor, ingresa un número válido.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jPtZJIB2wY-P",
+        "outputId": "fb51fea7-d2ed-4c8a-a28e-cb5724c1a8e6"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Bienvenido al juego: Adivina el Número\n",
+            "El numero esta entre 1 y 20.\n",
+            "Intento 1 - Ingresa tu número: 20\n",
+            "El número secreto es menor.\n",
+            "Intento 2 - Ingresa tu número: 1\n",
+            "El número secreto es mayor.\n",
+            "Intento 3 - Ingresa tu número: 10\n",
+            "El número secreto es mayor.\n",
+            "Intento 4 - Ingresa tu número: 15\n",
+            "El número secreto es mayor.\n",
+            "Intento 5 - Ingresa tu número: 19\n",
+            "El número secreto es menor.\n",
+            "Intento 6 - Ingresa tu número: 17\n",
+            "¡Felicidades! adivinaste el número secreto: 17\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 6: Calculadora de Factorial\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Crea una función que calcule el factorial de un número entero ingresado por el usuario.  \n",
+        "- La función debe utilizar estructuras de control para iterar (o una solución recursiva) y calcular el factorial.  \n",
+        "- Implementa manejo de excepciones para asegurarte de que el número ingresado es entero y no negativo.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Ingrese un número entero para calcular su factorial: 5\n",
+        "El factorial de 5 es 120"
+      ],
+      "metadata": {
+        "id": "-AZlJ4Pm0A7t"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Ingrese un número entero para calcular su factorial:\")\n",
+        "\n",
+        "try:\n",
+        "    numero = int(input())\n",
+        "    if numero < 0:\n",
+        "        print(\"El número debe ser no negativo.\")\n",
+        "    else:\n",
+        "        resultado = 1\n",
+        "        for i in range(1, numero + 1):\n",
+        "            resultado *= i\n",
+        "        print(f\"El factorial de {numero} es {resultado}\")\n",
+        "except ValueError:\n",
+        "    print(\"Por favor, ingrese un número entero válido.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PIj-AByO0Ej0",
+        "outputId": "f119582e-2c87-4268-fc21-d39472ce98f6"
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese un número entero para calcular su factorial:\n",
+            "10\n",
+            "El factorial de 10 es 3628800\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 7: Manejo de Fechas y Horas\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Desarrolla una función que reciba una fecha ingresada por el usuario en formato \"DD/MM/AAAA\" y determine cuántos días faltan para esa fecha a partir de hoy.  \n",
+        "- Importa el módulo `datetime` para trabajar con fechas.  \n",
+        "- Utiliza estructuras de control para validar el formato y maneja excepciones en caso de error en el ingreso de la fecha.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Ingrese una fecha (DD/MM/AAAA): 25/12/2023\n",
+        "Faltan 150 días para el 25/12/2023."
+      ],
+      "metadata": {
+        "id": "ocmIOC7C1O13"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from datetime import datetime\n",
+        "\n",
+        "fecha_input = input(\"Ingrese una fecha (DD/MM/AAAA): \")\n",
+        "\n",
+        "try:\n",
+        "    fecha_objetivo = datetime.strptime(fecha_input, \"%d/%m/%Y\")\n",
+        "    hoy = datetime.now()\n",
+        "    diferencia = (fecha_objetivo - hoy).days\n",
+        "    if diferencia > 0:\n",
+        "        print(f\"Faltan {diferencia} días para el {fecha_input}.\")\n",
+        "    elif diferencia == 0:\n",
+        "        print(\"La fecha es hoy\")\n",
+        "    else:\n",
+        "        print(f\"La fecha {fecha_input} ya pasó.\")\n",
+        "except ValueError:\n",
+        "    print(\"Formato de fecha inválido. Use DD/MM/AAAA.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6-aaGus01Pms",
+        "outputId": "c8137872-3eb5-44c7-e618-a5ec7dae2bcc"
+      },
+      "execution_count": 20,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese una fecha (DD/MM/AAAA): 03/04/2030\n",
+            "Faltan 1805 días para el 03/04/2030.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 8: Registro de Estudiantes\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Implementa un sistema que gestione un registro de estudiantes utilizando un diccionario, donde la clave sea el nombre y el valor la calificación.  \n",
+        "- Crea funciones para agregar un estudiante, actualizar la calificación, eliminar estudiantes y listar todo el registro.  \n",
+        "- Utiliza un bucle para mostrar un menú interactivo al usuario.  \n",
+        "- Maneja excepciones para gestionar errores en la selección de opciones o al intentar modificar un estudiante inexistente.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Registro de estudiantes inicial: {'Ana': 90, 'Luis': 78, 'Carlos': 85}\n",
+        "\n",
+        "Menú:\n",
+        "\n",
+        "Agregar estudiante\n",
+        "\n",
+        "Actualizar calificación\n",
+        "\n",
+        "Eliminar estudiante\n",
+        "\n",
+        "Listar estudiantes\n",
+        "\n",
+        "Salir\n",
+        "\n",
+        "Opción: 2\n",
+        "Ingrese el nombre del estudiante: Luis\n",
+        "Ingrese la nueva calificación: 82\n",
+        "Estudiante actualizado: Luis - 82\n",
+        "\n",
+        "Registro final: {'Ana': 90, 'Luis': 82, 'Carlos': 85}"
+      ],
+      "metadata": {
+        "id": "dMpPUJwI24Ik"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "registro = {'Ana': 90, 'Luis': 78, 'Carlos': 85}\n",
+        "\n",
+        "while True:\n",
+        "    print(\"Menú:\")\n",
+        "    print(\"1. Agregar estudiante\")\n",
+        "    print(\"2. Actualizar calificación\")\n",
+        "    print(\"3. Eliminar estudiante\")\n",
+        "    print(\"4. Listar estudiantes\")\n",
+        "    print(\"5. Salir\")\n",
+        "\n",
+        "    opcion = input(\"Opción: \")\n",
+        "\n",
+        "    if opcion == \"1\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante: \")\n",
+        "        try:\n",
+        "            nota = int(input(\"Ingrese la calificación: \"))\n",
+        "            registro[nombre] = nota\n",
+        "            print(f\"Estudiante agregado: {nombre} - {nota}\")\n",
+        "        except ValueError:\n",
+        "            print(\"La calificación debe ser un número.\")\n",
+        "    elif opcion == \"2\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante: \")\n",
+        "        if nombre in registro:\n",
+        "            try:\n",
+        "                nueva = int(input(\"Ingrese la nueva calificación: \"))\n",
+        "                registro[nombre] = nueva\n",
+        "                print(f\"Estudiante actualizado: {nombre} - {nueva}\")\n",
+        "            except ValueError:\n",
+        "                print(\"La calificación debe ser un número.\")\n",
+        "        else:\n",
+        "            print(\"El estudiante no existe.\")\n",
+        "    elif opcion == \"3\":\n",
+        "        nombre = input(\"Ingrese el nombre del estudiante a eliminar: \")\n",
+        "        if nombre in registro:\n",
+        "            del registro[nombre]\n",
+        "            print(f\"Estudiante eliminado: {nombre}\")\n",
+        "        else:\n",
+        "            print(\"El estudiante no existe.\")\n",
+        "    elif opcion == \"4\":\n",
+        "        for nombre, nota in registro.items():\n",
+        "            print(f\"{nombre} - {nota}\")\n",
+        "    elif opcion == \"5\":\n",
+        "        print(\"Registro final:\", registro)\n",
+        "        break\n",
+        "    else:\n",
+        "        print(\"Opción no válida.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jF2CNeCy4pAR",
+        "outputId": "eb8652eb-f7db-40f9-c3fd-0e48917afd56"
+      },
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Menú:\n",
+            "1. Agregar estudiante\n",
+            "2. Actualizar calificación\n",
+            "3. Eliminar estudiante\n",
+            "4. Listar estudiantes\n",
+            "5. Salir\n",
+            "Opción: 1\n",
+            "Ingrese el nombre del estudiante: patroclo\n",
+            "Ingrese la calificación: 99\n",
+            "Estudiante agregado: patroclo - 99\n",
+            "Menú:\n",
+            "1. Agregar estudiante\n",
+            "2. Actualizar calificación\n",
+            "3. Eliminar estudiante\n",
+            "4. Listar estudiantes\n",
+            "5. Salir\n",
+            "Opción: 4\n",
+            "Ana - 90\n",
+            "Luis - 78\n",
+            "Carlos - 85\n",
+            "patroclo - 99\n",
+            "Menú:\n",
+            "1. Agregar estudiante\n",
+            "2. Actualizar calificación\n",
+            "3. Eliminar estudiante\n",
+            "4. Listar estudiantes\n",
+            "5. Salir\n",
+            "Opción: 3\n",
+            "Ingrese el nombre del estudiante a eliminar: luis\n",
+            "El estudiante no existe.\n",
+            "Menú:\n",
+            "1. Agregar estudiante\n",
+            "2. Actualizar calificación\n",
+            "3. Eliminar estudiante\n",
+            "4. Listar estudiantes\n",
+            "5. Salir\n",
+            "Opción: 3\n",
+            "Ingrese el nombre del estudiante a eliminar: Luis\n",
+            "Estudiante eliminado: Luis\n",
+            "Menú:\n",
+            "1. Agregar estudiante\n",
+            "2. Actualizar calificación\n",
+            "3. Eliminar estudiante\n",
+            "4. Listar estudiantes\n",
+            "5. Salir\n",
+            "Opción: 5\n",
+            "Registro final: {'Ana': 90, 'Carlos': 85, 'patroclo': 99}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 9: Generador de Contraseñas Aleatorias\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Crea una función que genere una contraseña aleatoria de una longitud especificada por el usuario.  \n",
+        "- Utiliza el módulo `random` junto con la biblioteca `string` para construir la contraseña a partir de letras (mayúsculas y minúsculas), dígitos y caracteres especiales.  \n",
+        "- Valida la entrada y maneja excepciones para asegurarte de que la longitud es un número entero positivo.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Ingrese la longitud deseada para la contraseña: 10\n",
+        "Contraseña generada: A8b#K3d!Qz"
+      ],
+      "metadata": {
+        "id": "PpbSfewR4_GL"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "import string\n",
+        "\n",
+        "longitud = input(\"Ingrese la longitud deseada para la contraseña: \")\n",
+        "\n",
+        "try:\n",
+        "    longitud = int(longitud)\n",
+        "    if longitud > 0:\n",
+        "        caracteres = string.ascii_letters + string.digits + string.punctuation\n",
+        "        contraseña = \"\".join(random.choice(caracteres) for _ in range(longitud))\n",
+        "        print(\"Contraseña generada:\", contraseña)\n",
+        "    else:\n",
+        "        print(\"La longitud debe ser un número positivo.\")\n",
+        "except ValueError:\n",
+        "    print(\"Por favor, ingrese un número entero válido.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "q4_O0Vnb5O9G",
+        "outputId": "540bad9b-4707-4f9e-e670-27297b0b2223"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese la longitud deseada para la contraseña: 7\n",
+            "Contraseña generada: >\"-{Fy\"\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Ejercicio 10: Buscador de Archivos en un Directorio\n",
+        "\n",
+        "**Descripción:**  \n",
+        "Desarrolla una función que reciba el nombre de un directorio y una subcadena para buscar archivos cuyo nombre la contenga.  \n",
+        "- Utiliza el módulo `os` para listar el contenido del directorio.  \n",
+        "- Aplica estructuras de control para filtrar los archivos según la subcadena.  \n",
+        "- Implementa manejo de excepciones para controlar errores como directorio no existente o permisos insuficientes.\n",
+        "\n",
+        "**Ejemplo de salida:**  \n",
+        "Ingrese la ruta del directorio: /ruta/al/directorio\n",
+        "Ingrese la subcadena a buscar: reporte\n",
+        "Archivos encontrados que contienen \"reporte\":\n",
+        "\n",
+        "reporte_enero.pdf\n",
+        "\n",
+        "reporte_febrero.xlsx\n",
+        "\n",
+        "resumen_reporte.txt"
+      ],
+      "metadata": {
+        "id": "zrvIzxrW5RWX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "\n",
+        "ruta = input(\"Ingrese la ruta del directorio: \")\n",
+        "subcadena = input(\"Ingrese la subcadena a buscar: \")\n",
+        "\n",
+        "try:\n",
+        "    archivos = os.listdir(ruta)\n",
+        "    encontrados = [archivo for archivo in archivos if subcadena in archivo]\n",
+        "    if encontrados:\n",
+        "        print(f'Archivos encontrados que contienen \"{subcadena}\":')\n",
+        "        for archivo in encontrados:\n",
+        "            print(archivo)\n",
+        "    else:\n",
+        "        print(f'No se encontraron archivos que contengan \"{subcadena}\".')\n",
+        "except FileNotFoundError:\n",
+        "    print(\"El directorio no existe.\")\n",
+        "except PermissionError:\n",
+        "    print(\"Permiso denegado para acceder al directorio.\")\n",
+        "except Exception as e:\n",
+        "    print(\"Ocurrió un error:\", e)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4TLaUtHo5aRH",
+        "outputId": "f6809144-c757-48df-a919-4cd20644d603"
+      },
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese la ruta del directorio: hola\n",
+            "Ingrese la subcadena a buscar: comoleva\n",
+            "El directorio no existe.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
